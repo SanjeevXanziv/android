@@ -30,4 +30,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ListViewActivity.class);
         startActivity(intent);
     }
+
+    public void addStudent(View view) {
+        Intent intent = new Intent(this, AddStudentActivity.class);
+        startActivity(intent);
+    }
 }

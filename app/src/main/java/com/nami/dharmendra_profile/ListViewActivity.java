@@ -9,6 +9,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.nami.dharmendra_profile.Configuration.DbHelper;
+import com.nami.dharmendra_profile.Model.StudentModel;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,12 +25,17 @@ public class ListViewActivity extends AppCompatActivity {
 
         // Dharmendra girlfriend list
         
-        List<String> dharmendraGfList = Arrays.asList("Rita", "Binita", "Basanti");
+        List<StudentModel> studentModelList = new DbHelper(this).getAllStudents();
+        List<String> studentNames = new ArrayList<>();
+
+        for (StudentModel studentModel : studentModelList) {
+            studentNames.add(studentModel.getName());
+        }
 
         ListView listView = findViewById(R.id.girlFriendList); // listview resource init
         // ArrayAdapter variable init.
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout .simple_list_item_1, dharmendraGfList);
+                android.R.layout .simple_list_item_1, studentNames);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
